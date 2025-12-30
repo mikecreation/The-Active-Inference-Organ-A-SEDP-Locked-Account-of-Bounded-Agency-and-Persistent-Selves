@@ -1,0 +1,500 @@
+\documentclass[10pt,twocolumn]{article}
+
+% --- Standard Packages (Robust) ---
+\usepackage[margin=0.75in, columnsep=0.3in, bottom=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{physics}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{graphicx}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% --- Graphics & Boxes ---
+\usepackage[most]{tcolorbox}
+
+% --- Typography safety for two-column boxes ---
+\emergencystretch=2em
+
+% --- Custom Colors ---
+\definecolor{techblue}{RGB}{0, 80, 180}
+\definecolor{techcyan}{RGB}{0, 180, 220}
+\definecolor{techgray}{RGB}{70, 75, 80}
+\definecolor{softbg}{RGB}{245, 247, 250}
+
+% --- Global tcolorbox settings ---
+\tcbset{
+  enhanced jigsaw,
+  parbox=false,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt,
+  boxsep=2pt,
+  before skip=8pt,
+  after skip=8pt,
+  width=\linewidth,
+  colbacktitle=white,
+  coltitle=black,
+  fonttitle=\bfseries
+}
+
+% --- Box Definitions ---
+\newtcolorbox{conceptbox}[1][]{
+  colback=techcyan!6,
+  colframe=techcyan!60!black,
+  leftrule=3pt,
+  title={#1},
+  breakable=false
+}
+
+\newtcolorbox{mathbox}[1][]{
+  colback=techblue!4,
+  colframe=techblue!70!black,
+  leftrule=3pt,
+  title={#1},
+  breakable=false,
+  fontupper=\small\raggedright
+}
+
+% Worksheet box types (used in Appendix A)
+\newtcolorbox{wsheaderbox}{
+  colback=white,
+  colframe=white,
+  boxrule=0pt,
+  left=0pt,right=0pt,top=0pt,bottom=6pt
+}
+
+\newtcolorbox{wscheckbox}[1][]{
+  colback=softbg,
+  colframe=techgray!60,
+  leftrule=3pt,
+  title={#1},
+  breakable=false
+}
+
+\newcommand{\cb}{\(\square\)}
+\newcommand{\linefill}{\rule{0.98\linewidth}{0.4pt}}
+
+% --- Macros ---
+\newcommand{\ORCID}{0009-0001-9194-938X}
+\newcommand{\kb}{k_{\mathrm{B}}}
+\newcommand{\AIF}{\mathcal{A}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\Leff}{\mathcal{L}_{\mathrm{eff}}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\KL}{D_{\mathrm{KL}}}
+\newcommand{\Q}{q}
+\newcommand{\Pdist}{p}
+
+% --- Title Information ---
+\title{\bfseries\huge The Active Inference Organ\\
+{\Large\normalfont\color{techgray} A SEDP-Locked Account of Bounded Agency and Persistent Selves}}
+\author{\textbf{Michael Zot}\\ ZotBot Research Initiative\\
+\small ORCID: \href{https://orcid.org/\ORCID}{\ORCID}}
+\date{December 29, 2025}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\noindent \textbf{Abstract.}
+This note applies the System Emergence Discovery Protocol (SEDP) to active inference, treating it as an organ-level mechanism that can produce bounded, persistent agents from noisy sensory streams and limited action channels.
+Active inference is framed as a process theory derived from the Free Energy Principle (FEP), where a system maintains structural and functional integrity by minimizing variational free energy through coupled perception and action \cite{Friston2009,Friston2010,ParrFriston2019,Buckley2017}.
+We define the \emph{Active Inference Organ} as a composed mapping that takes local measurement records at a statistical boundary and outputs a maintained agent state, action policies, and a preserved separation between internal and external degrees of freedom.
+Markov blankets are treated strictly as conditional-independence boundaries (a statistical separation), variational free energy is treated as a computable bound on surprise (negative log evidence), and thermodynamic persistence is treated as local maintenance through dissipation rather than any violation of the second law \cite{Friston2013,Buckley2017}.
+We provide SEDP locks, a unified success predicate, lesion-style failure modes, minimality arguments, and witness tests spanning oculomotion and action-oriented learning demonstrations \cite{FristonSaccades2012,ParrFristonOculomotion2018,AdamsPursuit2015,Tschantz2020}.
+Clinical interpretations are framed as mechanistic hypotheses about precision weighting (gain on prediction errors), not definitive diagnoses \cite{AdamsPsychosis2013,Sterzer2018,VandeCruys2014}.
+\end{abstract}
+
+\section{Motivation}
+
+Objectivity requires stable observers.
+A system cannot reliably generate or use shared facts if it cannot maintain itself long enough to sample, store, and act on records.
+This motivates an ``observer organ'' lens: a functional system that manufactures bounded agency from noisy inputs and limited control.
+Active inference is a leading candidate because it offers a unified account of perception, action, learning, and homeostatic persistence via variational free energy minimization \cite{Friston2009,Friston2010,ParrFriston2019,Buckley2017}.
+
+This paper does not claim that active inference is the only correct account of life or mind.
+It claims something narrower and testable: active inference can be treated as an organ-level mechanism under SEDP, with explicit success predicates and predictable lesions.
+
+\section{SEDP Frame}
+
+\begin{conceptbox}[SEDP in one paragraph]
+SEDP is a protocol for turning scattered mechanisms into a system-level object by forcing five locks.
+Definition Lock forces an operational definition.
+Success Predicate Lock forces a measurable criterion for success.
+Lesion Lock forces predicted failures when sub-functions are removed.
+Minimality Lock forces pruning to the smallest set that still works.
+Witness Lock forces diagnostics that decide success or failure in practice.
+\end{conceptbox}
+
+\section{Operational Definition}
+
+\begin{conceptbox}[Operational Definition]
+A system exhibits active inference when it maintains structural and functional integrity over time by coupling perception and action to minimize variational free energy under a generative model, conditioned on a statistical boundary that separates internal from external states \cite{Friston2009,Friston2010}.
+\end{conceptbox}
+
+A \emph{statistical boundary} means a conditional-independence boundary (a probabilistic separation), not a literal wall.
+A \emph{generative model} means a probabilistic model that predicts observations from hidden state hypotheses.
+\emph{Variational free energy} is a computable quantity that upper bounds surprise, where surprise means negative log evidence of observations under the model \cite{Friston2009,Friston2010,Buckley2017}.
+
+\section{The Active Inference Organ}
+
+\subsection{Organ definition}
+
+\begin{conceptbox}[Organ Definition]
+An organ is a composed functional mapping with identifiable sub-functions that produces a specific output class and has predictable failure modes when any sub-function is removed.
+\end{conceptbox}
+
+\begin{mathbox}[Active Inference Organ Output]
+Let \(\mathcal{M}(t)\) denote the local measurement record available to the system at time \(t\), consisting of sensory states \(s(t)\) and action-related channels \(a(t)\).
+Define the Active Inference Organ as a mapping that outputs bounded internal states, action policies, and maintained boundary structure:
+\[
+\AIF:\{\mathcal{M}(t)\}_{t\in[0,T]}
+\mapsto
+\left(
+\begin{array}{@{}l@{}}
+\text{bounded internal states }\mu(t),\\
+\text{policies }\pi,\\
+\text{maintained boundary structure}
+\end{array}
+\right)
+\]
+Here \(\mu\) denotes internal beliefs or states, and \(\pi\) denotes action policies, both defined relative to a model class and observation channel.
+\end{mathbox}
+
+
+
+% The aligned form above fixes the out-of-bounds problem by forcing a clean line break inside the display.
+
+\subsection{Composed mapping}
+
+\begin{mathbox}[Composed Mapping]
+In Zot-style composition, the Active Inference Organ is modeled as:
+\[
+\boxed{
+\AIF = \mathrm{T_{stab}} \circ \mathrm{Precision} \circ \mathrm{Action} \circ \mathrm{Inference} \circ \mathrm{Blanket}.
+}
+\]
+The ordering denotes functional dependence, not strict time ordering.
+\end{mathbox}
+
+Each term is defined operationally below.
+
+\section{Sub-functions and their operational meaning}
+
+\subsection{Blanket}
+
+A Markov blanket is a conditional-independence boundary: internal states are conditionally independent of external states given sensory and active states \cite{Friston2013,Hipolito2021}.
+This is a statistical statement that can be expressed in Bayesian network terms.
+
+\begin{mathbox}[Blanket condition]
+Let \(x\) denote external states, \(\mu\) internal states, \(s\) sensory states, and \(a\) active states.
+A Markov blanket condition is:
+\[
+\mu \perp x \mid (s,a),
+\]
+which reads ``internal and external are independent given sensory and active states.''
+\end{mathbox}
+
+This framing has been debated and refined in philosophy of science and theoretical biology, so it should be used as a modeling assumption with explicit witness tests rather than treated as a metaphysical claim \cite{Bruineberg2020,Friston2013}.
+
+\subsection{Inference}
+
+Variational inference is approximate Bayesian inference: it approximates a posterior distribution over hidden states by minimizing a divergence to the true posterior \cite{Buckley2017,Friston2010}.
+The divergence is usually the Kullback-Leibler divergence, a measure of mismatch between probability distributions.
+
+\begin{mathbox}[Variational free energy]
+A standard formulation writes free energy as:
+\[
+\F(\Q) = \E_{\Q(z)}\big[-\ln \Pdist(o,z)\big] + \E_{\Q(z)}\big[\ln \Q(z)\big],
+\]
+where \(o\) denotes observations, \(z\) denotes hidden states, \(\Q(z)\) is a variational density, and \(\Pdist(o,z)\) is a generative model.
+This can be rearranged into:
+\[
+\F(\Q) = -\ln \Pdist(o) + \KL\big(\Q(z)\,\|\,\Pdist(z\mid o)\big),
+\]
+so \(\F(\Q)\) upper bounds surprise \(-\ln \Pdist(o)\) because \(\KL\ge 0\) \cite{Friston2009,Buckley2017}.
+\end{mathbox}
+
+This is the core computational claim that makes the theory operational: \(\F\) is computable from quantities available to the system, whereas surprise is not directly computable without the true evidence.
+
+\subsection{Action}
+
+Active inference couples inference to action by treating action as a way to change future observations so that they become consistent with model predictions \cite{ParrFriston2019}.
+In many formulations this is expressed via expected free energy, which trades off expected outcomes and information gain \cite{ParrFriston2019,Friston2010}.
+
+\begin{mathbox}[Expected free energy idea]
+Expected free energy can be written in forms that decompose into terms interpretable as expected risk and expected ambiguity.
+The common operational meaning is: choose actions that both reduce uncertainty and satisfy prior preferences \cite{ParrFriston2019}.
+\end{mathbox}
+
+For empirical grounding, active inference has been used to model exploratory eye movements as ``perception as hypothesis testing'' and actions as experiments \cite{FristonSaccades2012,ParrFristonOculomotion2018,AdamsPursuit2015}.
+
+\subsection{Precision}
+
+Precision weighting refers to the gain applied to prediction errors (gain means how strongly errors update beliefs or drive action).
+Precision is often interpreted as inverse variance, meaning higher precision implies higher confidence.
+Mis-weighting precision can cause unstable inference \cite{Bastos2012}.
+
+Predictive coding is a family of models in which hierarchical predictions are compared to sensory input and residual errors are passed forward, while predictions are passed backward \cite{RaoBallard1999,Bastos2012}.
+Precision acts as a control knob on those errors.
+
+\subsection{Thermodynamic stabilization}
+
+Thermodynamic stabilization means persistence under dissipation.
+It does not mean defeating the second law.
+It means maintaining organization by exporting entropy to the environment and sustaining nonequilibrium steady states \cite{Friston2013,Buckley2017}.
+This is a modeling bridge between information-theoretic objectives and energetic constraints.
+
+\section{Unified success predicate}
+
+\begin{mathbox}[Unified Active Inference Condition]
+Active inference functions as an organ-level mechanism if and only if there exists a Markov blanket factorization and a generative model class such that variational free energy remains bounded under the coupled dynamics of inference and action:
+\[
+\exists\, (\text{blanket},\Pdist,\Q,\pi)\ \text{s.t.}\ \sup_{t\in[0,T]}\E[\F_t(\Q,\pi)] \le \F_0,
+\]
+with policy updates that reduce expected free energy under local sensory and active constraints \cite{ParrFriston2019,Buckley2017}.
+\end{mathbox}
+
+This criterion is operational because it can be tested by comparing closed-loop behavior to open-loop or random-action baselines using predictive error, model evidence proxies, or free-energy-based objectives \cite{Tschantz2020}.
+
+\section{Minimality}
+
+SEDP requires a minimality argument.
+The goal is not to prove uniqueness, but to show that removing a sub-function breaks the operational definition.
+
+\begin{itemize}
+\item Remove Blanket: internal and external states are not conditionally separable, so there is no stable agent boundary to maintain or infer through \cite{Friston2013,Bruineberg2020}.
+\item Remove Inference: beliefs do not update to match observations, so errors accumulate and control becomes unstable \cite{Buckley2017}.
+\item Remove Action: the system cannot sample the world to reduce uncertainty or fulfill preferences, so it cannot maintain bounded observation statistics \cite{ParrFriston2019}.
+\item Remove Precision: errors are misweighted, producing either runaway sensitivity or rigid under-updating \cite{Bastos2012}.
+\item Remove \(\mathrm{T_{stab}}\): persistence fails because there is no energetic regime supporting long-lived bounded organization \cite{Friston2013}.
+\end{itemize}
+
+\section{Lesions and falsifiable predictions}
+
+\begin{conceptbox}[Lesion predictions]
+Blanket lesion: conditional independence fails, and internal dynamics become directly driven by external fluctuations.\\
+Inference lesion: model parameters freeze or drift, producing accumulating prediction error and maladaptive behavior.\\
+Action lesion: the system cannot reduce uncertainty by sampling, producing high expected free energy trajectories.\\
+Precision lesion: prediction errors are over-weighted or under-weighted, producing instability or rigidity.\\
+Thermo lesion: energetic constraints prevent sustained nonequilibrium maintenance, producing rapid decay of organization.
+\end{conceptbox}
+
+\section{Witnesses}
+
+\subsection{Closed-loop reduction of uncertainty}
+Saccadic eye movements provide a witness class because actions can be modeled as information-seeking experiments that reduce uncertainty \cite{FristonSaccades2012,ParrFristonOculomotion2018,AdamsPursuit2015}.
+
+\subsection{Learning action-oriented generative models}
+Tschantz et al. demonstrate active inference agents learning action-oriented models, including bacterial chemotaxis as an illustrative model \cite{Tschantz2020}.
+
+\subsection{Precision signatures}
+Precision weighting has neurobiological hypotheses, often linked to neuromodulation.
+A cautious stance is to treat precision as a computational variable that may correlate with neuromodulatory changes, rather than asserting a one-to-one mapping \cite{Sterzer2018}.
+
+\subsection{Boundary signatures}
+Markov blankets can be probed as statistical dependencies in time series.
+A practical witness is whether internal dynamics predict external dynamics primarily through sensory and active channels.
+This is debated, so it should be treated as an empirical target rather than an assumption \cite{Bruineberg2020,Hipolito2021}.
+
+\section{Clinical interpretations with strict caution}
+
+Predictive processing and active inference have been used as mechanistic hypothesis generators in psychiatry and cognitive neuroscience.
+These are not definitive diagnoses.
+They propose that some phenotypes may involve altered precision weighting or altered model evidence accumulation.
+Examples include computational accounts in psychosis research \cite{AdamsPsychosis2013,Sterzer2018} and predictive coding discussions of autism framed as precision rigidity hypotheses \cite{VandeCruys2014}.
+These are included as testable lesion mappings, not as claims that a diagnosis reduces to one parameter.
+
+\section{Relation to Objectivity and the emergence stack}
+
+Objectivity requires stable observers, stable records, and stable reconstruction procedures.
+Active inference provides one candidate mechanism for generating bounded observers that can maintain internal models and act to preserve viability.
+In this sense, the Active Inference Organ can be treated as upstream of the Objectivity Organ: persistent agents make stable observation and record maintenance feasible.
+
+This note does not claim that objectivity depends on active inference in all cases.
+It claims that if one wants a mechanistic account of why observers exist as stable, boundary-maintaining systems, active inference provides a structured candidate that can be evaluated with SEDP.
+
+\section{Scope and limitations}
+
+This paper is a SEDP-locked reconstruction, not a declaration of final truth.
+Active inference is an active research program with ongoing debate about blanket interpretation, biological plausibility, and empirical identifiability \cite{Buckley2017,Bruineberg2020,Hipolito2021}.
+Claims should be treated as operational hypotheses with explicit witnesses and lesion tests.
+
+\section{Conclusion}
+
+The Active Inference Organ is a candidate system-level mechanism for bounded agency.
+SEDP forces it into a testable object by requiring an operational definition, a unified success predicate, lesion failures, minimality pressure, and witness diagnostics.
+This formalization connects emergence work to persistence machinery that makes stable observers possible, while maintaining strict scientific caution about scope.
+
+% ===== Appendix A: start cleanly on a new page and in one column (prevents empty column artifacts) =====
+\appendix
+\clearpage
+\onecolumn
+
+\section*{Appendix A: SEDP One-Page Organ-Finder Worksheet}
+
+\begin{wsheaderbox}
+{\color{techblue}\rule{\linewidth}{2pt}}\par\vspace{0.6em}
+{\fontsize{20}{24}\selectfont\bfseries The System Emergence Discovery Protocol (SEDP)}\par
+\vspace{0.2em}
+{\large\color{techgray} One-Page Organ-Finder Worksheet}\par
+\vspace{0.6em}
+{\small Use this to turn scattered mechanisms into a single system-level object with a success predicate and failure modes.}\par
+\end{wsheaderbox}
+
+\begin{conceptbox}[SEDP in one sentence]
+SEDP finds hidden functional wholes by forcing five locks: Definition, Success Predicate, Lesion, Minimality, Witness.
+\end{conceptbox}
+
+\begin{mathbox}[0. Phenomenon]
+\textbf{Name of phenomenon:} \linefill
+
+\vspace{0.4em}
+\textbf{Domain:} \cb\ Physics \ \cb\ Biology \ \cb\ Neuroscience \ \cb\ Computation \ \cb\ Economics \ \cb\ Other: \linefill
+\end{mathbox}
+
+\begin{mathbox}[1. Definition Lock]
+Write a single operational definition that a skeptic cannot wiggle out of.
+
+\vspace{0.4em}
+\textbf{Template:} “\(X\) is present when independent observers/agents can do \(Y\) under constraints \(Z\).”
+
+\vspace{0.5em}
+\textbf{Your definition:}\par
+\linefill\par
+\linefill\par
+\linefill
+\end{mathbox}
+
+\begin{mathbox}[2. Success Predicate Lock]
+Turn the definition into a measurable predicate.
+
+\vspace{0.4em}
+\textbf{Template:} “\(X\) exists iff \(\exists\,V\) such that predicates \(P_1,P_2,P_3\) hold simultaneously.”
+
+\vspace{0.5em}
+\textbf{Unified predicate (write it cleanly):}\par
+\linefill\par
+\linefill\par
+\linefill
+\end{mathbox}
+
+\begin{wscheckbox}[3. Candidate Sub-functions]
+List the smallest set of sub-functions you think are required.
+
+\vspace{0.4em}
+\cb\ Module A:\hspace{0.6em}\hrulefill\par
+\cb\ Module B:\hspace{0.6em}\hrulefill\par
+\cb\ Module C:\hspace{0.6em}\hrulefill\par
+\cb\ Module D:\hspace{0.6em}\hrulefill\par
+\cb\ Module E:\hspace{0.6em}\hrulefill\par
+\end{wscheckbox}
+
+
+\begin{mathbox}[4. Lesion Lock]
+For each module, state what must fail if it is removed or damaged.
+
+\vspace{0.4em}
+\textbf{Template:} “If Module \(M_i\) is absent, failure \(F_i\) must occur.”
+
+\vspace{0.5em}
+\textbf{Lesions:}\par
+Module A removed \(\Rightarrow\) \linefill\par
+Module B removed \(\Rightarrow\) \linefill\par
+Module C removed \(\Rightarrow\) \linefill\par
+Module D removed \(\Rightarrow\) \linefill
+\end{mathbox}
+
+\begin{mathbox}[5. Minimality Lock]
+Try to delete modules until the phenomenon breaks.
+
+\vspace{0.4em}
+\cb\ I removed one module and the definition still held. Module removed: \linefill
+
+\cb\ I removed one module and the definition failed. Module removed: \linefill
+
+\vspace{0.4em}
+\textbf{Minimal set that still works:}\par
+\linefill
+\end{mathbox}
+
+\begin{mathbox}[6. Witness Lock]
+List diagnostics that decide whether success and failure occurred.
+
+\vspace{0.4em}
+\textbf{Template:} “If the organ is real, we should observe \(W\). If it fails, we should observe \(W'\).”
+
+\vspace{0.5em}
+\textbf{Witness tests:}\par
+\cb\ Witness 1 (success): \linefill\par
+\cb\ Witness 1 (failure): \linefill\par
+\cb\ Witness 2 (success): \linefill\par
+\cb\ Witness 2 (failure): \linefill
+\end{mathbox}
+
+\begin{conceptbox}[SEDP Output]
+If you can fill this sheet with tight definitions, a unified predicate, lesions, minimality, and witnesses, you have an organ-grade system-level object. If you cannot, you have a promising hypothesis, not an organ yet.
+\end{conceptbox}
+
+% --- References ---
+\begin{thebibliography}{99}
+
+\bibitem{Friston2009}
+K. Friston, \emph{The free-energy principle: a rough guide to the brain}, Trends in Cognitive Sciences \textbf{13}(7), 293--301 (2009).
+
+\bibitem{Friston2010}
+K. Friston, \emph{The free-energy principle: a unified brain theory?}, Nature Reviews Neuroscience \textbf{11}, 127--138 (2010).
+
+\bibitem{Friston2013}
+K. Friston, \emph{Life as we know it}, Journal of The Royal Society Interface \textbf{10}, 20130475 (2013).
+
+\bibitem{ParrFriston2019}
+T. Parr and K. Friston, \emph{Generalised free energy and active inference}, Biological Cybernetics \textbf{113}, 495--513 (2019).
+
+\bibitem{Buckley2017}
+C. L. Buckley et al., \emph{The free energy principle for action and perception: a mathematical review}, Journal of Mathematical Psychology \textbf{81}, 55--79 (2017).
+
+\bibitem{RaoBallard1999}
+R. P. N. Rao and D. H. Ballard, \emph{Predictive coding in the visual cortex: a functional interpretation of some extra-classical receptive-field effects}, Nature Neuroscience \textbf{2}, 79--87 (1999).
+
+\bibitem{Bastos2012}
+A. M. Bastos et al., \emph{Canonical microcircuits for predictive coding}, Neuron \textbf{76}, 695--711 (2012).
+
+\bibitem{FristonSaccades2012}
+K. Friston et al., \emph{Perceptions as hypotheses: saccades as experiments}, Frontiers in Psychology \textbf{3}, 151 (2012).
+
+\bibitem{ParrFristonOculomotion2018}
+T. Parr and K. Friston, \emph{Active inference and the anatomy of oculomotion}, Neuropsychologia \textbf{111}, 78--91 (2018).
+
+\bibitem{AdamsPursuit2015}
+R. A. Adams et al., \emph{Active inference and oculomotor pursuit}, Journal of Mathematical Psychology \textbf{68--69}, 1--14 (2015).
+
+\bibitem{Tschantz2020}
+A. Tschantz et al., \emph{Learning action-oriented models through active inference}, PLoS Computational Biology \textbf{16}(4), e1007805 (2020).
+
+\bibitem{AdamsPsychosis2013}
+R. A. Adams et al., \emph{The computational anatomy of psychosis}, Frontiers in Psychiatry \textbf{4}, 47 (2013).
+
+\bibitem{Sterzer2018}
+P. Sterzer et al., \emph{The predictive coding account of psychosis}, Biological Psychiatry \textbf{84}, 634--643 (2018).
+
+\bibitem{VandeCruys2014}
+S. Van de Cruys et al., \emph{Precise minds in uncertain worlds: predictive coding in autism}, Psychological Review \textbf{121}(4), 649--675 (2014).
+
+\bibitem{Bruineberg2020}
+J. Bruineberg, E. R. Palacios, and K. J. Friston, \emph{The Emperor's New Markov Blankets}, Behavioral and Brain Sciences (2020).
+
+\bibitem{Hipolito2021}
+I. Hip\'olito et al., \emph{Markov blankets in the brain}, Neuroscience of Consciousness \textbf{2021}(2), niab021 (2021).
+
+\end{thebibliography}
+
+\end{document}
